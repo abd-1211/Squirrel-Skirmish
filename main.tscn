@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://hxvn00jckfnk"]
+
+[ext_resource type="Script" uid="uid://d3cs3i4ko761f" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c65keb4o1hhil" path="res://BG.tscn" id="2_0xm2m"]
+[ext_resource type="AudioStream" uid="uid://dsfja382b0sph" path="res://Menu music.mp3" id="3_h2yge"]
+
+[sub_resource type="SystemFont" id="SystemFont_h2yge"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
+font = SubResource("SystemFont_h2yge")
+font_color = Color(2.9359758e-06, 0.7456398, 0.27351835, 1)
+outline_size = 3
+outline_color = Color(0.5686275, 0.1882353, 0.2, 1)
+shadow_size = 3
+shadow_color = Color(0.5529412, 0.21568628, 0.19607843, 1)
+
+[node name="Main" type="Node2D" unique_id=1443686520]
+scale = Vector2(1.667, 1.667)
+script = ExtResource("1_ig7tw")
+
+[node name="Play" type="Button" parent="." unique_id=1026775169]
+offset_left = 434.0
+offset_top = 168.0
+offset_right = 792.0
+offset_bottom = 348.0
+text = "Play"
+
+[node name="Quit" type="Button" parent="." unique_id=756523304]
+offset_left = 437.0
+offset_top = 403.0
+offset_right = 795.0
+offset_bottom = 583.0
+text = "Quit"
+
+[node name="ParallaxBackground" parent="." unique_id=661417983 instance=ExtResource("2_0xm2m")]
+
+[node name="Menumusic" type="AudioStreamPlayer2D" parent="." unique_id=1127625676]
+stream = ExtResource("3_h2yge")
+
+[node name="Label" type="Label" parent="." unique_id=1375229186]
+offset_left = 534.0
+offset_top = 15.0
+offset_right = 687.0
+offset_bottom = 90.0
+text = "Controls:
+Arrow keys to move
+spacebar to jump"
+label_settings = SubResource("LabelSettings_1bvp3")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1283330566]
+offset_left = 12.0
+offset_top = 433.0
+offset_right = 285.0
+offset_bottom = 638.0
+text = "Enemies in V0.1
+Dog:
+Attack = Horizontal
+Death = Vertical Strike
+
+Slug:
+Attack = Vertical
+Death = Horizontal Strike"
+label_settings = SubResource("LabelSettings_1bvp3")
+
+[node name="Control" type="Control" parent="." unique_id=1354289972]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,14 @@
+Control
+Label
+CollisionShape2D
+Node2D
+Timer
+Area2D
+AudioStreamPlayer2D
+AnimationPlayer
+AnimatedSprite2D
+CharacterBody2D
+Node
+CanvasLayer
+TileMap
+ParallaxLayer

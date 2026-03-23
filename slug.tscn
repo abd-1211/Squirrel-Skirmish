@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://ihl6crbw3dnu"]
+
+[ext_resource type="Texture2D" uid="uid://cb7uh2olbcaak" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/spritesheets/enemies/slug.png" id="1_sm1ku"]
+[ext_resource type="Texture2D" uid="uid://bks8aup0jkces" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/sprites/misc/enemy-death/enemy-death-1.png" id="2_yll1e"]
+[ext_resource type="Texture2D" uid="uid://b5s520qx187x7" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/sprites/misc/enemy-death/enemy-death-2.png" id="3_dr0vm"]
+[ext_resource type="Texture2D" uid="uid://x5nlsreldos" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/sprites/misc/enemy-death/enemy-death-3.png" id="4_i6f2q"]
+[ext_resource type="Texture2D" uid="uid://cu8r5odf06k6f" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/sprites/misc/enemy-death/enemy-death-4.png" id="5_ao5f8"]
+[ext_resource type="Texture2D" uid="uid://bia0ttablhfia" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/sprites/misc/enemy-death/enemy-death-5.png" id="6_ns0y8"]
+[ext_resource type="Texture2D" uid="uid://drqvmda5lm0d7" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/sprites/misc/enemy-death/enemy-death-6.png" id="7_own5d"]
+[ext_resource type="AudioStream" uid="uid://008qt0tpaaw6" path="res://explode.mp3" id="8_dr0vm"]
+
+[sub_resource type="GDScript" id="GDScript_sm1ku"]
+script/source = "extends CharacterBody2D
+var SPEED = 25
+var assigned_dir := false
+var rng := RandomNumberGenerator.new()
+var is_dead = false
+var has_hit = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	rng.randomize()
+	if velocity.x == 0:
+		assign_dir()
+func assign_dir():
+	if rng.randi_range(0,1) == 1:
+		$AnimatedSprite2D.flip_h = true
+		velocity.x = SPEED
+	else:
+		$AnimatedSprite2D.flip_h = false
+		velocity.x = -SPEED
+	$AnimatedSprite2D.play(\"Action\")
+		
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+	
+	velocity.y += 980 * delta
+	
+	move_and_slide()
+
+
+func _on_enemydeath_body_entered(body: Node2D) -> void:
+	
+	if body.name == \"Player\":
+		death()
+		Game.XP +=5
+
+func death():
+	if is_dead:
+		return
+	is_dead=true
+	set_physics_process(false)
+	set_process(false)
+	velocity=Vector2.ZERO
+	collision_layer=0
+	collision_mask=0
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.call_deferred(\"set_disabled\",true)
+		if child is Area2D:
+			child.call_deferred(\"set_monitoring\",false)
+			child.call_deferred(\"set_monitoring\",false)
+	
+	Utils.saveGame()
+	get_node(\"AnimatedSprite2D\").play(\"Death\")
+	$explode.play()
+	await get_node(\"AnimatedSprite2D\").animation_finished
+	self.queue_free()
+
+
+func _on_enemycollision_body_entered(body: Node2D) -> void:
+	
+	if body.name == \"Player\" and not has_hit:
+		has_hit = true
+		Game.playerHP -=3
+		body.shake_camera()
+		
+		death()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sm1ku"]
+size = Vector2(18, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1d0e"]
+atlas = ExtResource("1_sm1ku")
+region = Rect2(0, 0, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp2ih"]
+atlas = ExtResource("1_sm1ku")
+region = Rect2(32, 0, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x445"]
+atlas = ExtResource("1_sm1ku")
+region = Rect2(64, 0, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhn7w"]
+atlas = ExtResource("1_sm1ku")
+region = Rect2(96, 0, 32, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yll1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1d0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp2ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x445")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhn7w")
+}],
+"loop": true,
+"name": &"Action",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yll1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dr0vm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i6f2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ao5f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ns0y8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_own5d")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6f2q"]
+size = Vector2(22, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dr0vm"]
+size = Vector2(20, 7)
+
+[node name="Slug" type="CharacterBody2D" unique_id=2035337556]
+collision_layer = 4
+collision_mask = 9
+script = SubResource("GDScript_sm1ku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1456616963]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_sm1ku")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=832348220]
+sprite_frames = SubResource("SpriteFrames_yll1e")
+animation = &"Action"
+
+[node name="enemydeath" type="Area2D" parent="." unique_id=372548999]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemydeath" unique_id=1668812761]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_i6f2q")
+
+[node name="explode" type="AudioStreamPlayer2D" parent="." unique_id=613169306]
+stream = ExtResource("8_dr0vm")
+
+[node name="enemycollision" type="Area2D" parent="." unique_id=823307557]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemycollision" unique_id=1294663369]
+position = Vector2(1, -15)
+shape = SubResource("RectangleShape2D_dr0vm")
+
+[connection signal="body_entered" from="enemydeath" to="." method="_on_enemydeath_body_entered"]
+[connection signal="body_entered" from="enemycollision" to="." method="_on_enemycollision_body_entered"]

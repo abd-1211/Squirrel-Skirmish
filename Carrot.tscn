@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://dshtf0ammk3ov"]
+
+[ext_resource type="Texture2D" uid="uid://cwk8emqsk43l0" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/spritesheets/misc/carrot.png" id="1_j3vcf"]
+[ext_resource type="AudioStream" uid="uid://bshrbr3sr05m" path="res://driken5482-retro-coin-4-236671.mp3" id="2_qg445"]
+
+[sub_resource type="GDScript" id="GDScript_j3vcf"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		if Game.playerHP<10:
+			if Game.playerHP == 9 or Game.playerHP ==8:
+				Game.playerHP = 10
+			else:
+				Game.playerHP +=3
+		$AudioStreamPlayer2D.play()
+		
+		var tween = get_tree().create_tween()
+		var tween1 = get_tree().create_tween()
+		tween.tween_property(self,\"position\",position - Vector2(0,50),0.6)
+		tween1.tween_property(self,\"modulate:a\",0,0.6)
+		tween.tween_callback(queue_free)
+		
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qg445"]
+radius = 8.246211
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffjwf"]
+atlas = ExtResource("1_j3vcf")
+region = Rect2(0, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr0o8"]
+atlas = ExtResource("1_j3vcf")
+region = Rect2(17, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu4cr"]
+atlas = ExtResource("1_j3vcf")
+region = Rect2(34, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6c4v"]
+atlas = ExtResource("1_j3vcf")
+region = Rect2(51, 0, 17, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d6a14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffjwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr0o8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu4cr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6c4v")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_qs3h6"]
+resource_name = "Idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xy1ec"]
+_data = {
+&"Idle": SubResource("Animation_qs3h6")
+}
+
+[node name="Carrot" type="Area2D" unique_id=952168241]
+script = SubResource("GDScript_j3vcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=559425782]
+shape = SubResource("CircleShape2D_qg445")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=545869143]
+sprite_frames = SubResource("SpriteFrames_d6a14")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.8593165
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1469648570]
+libraries/ = SubResource("AnimationLibrary_xy1ec")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1066755883]
+stream = ExtResource("2_qg445")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

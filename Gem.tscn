@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://ffhhj5xctl18"]
+
+[ext_resource type="Texture2D" uid="uid://c7oakavarxof5" path="res://Sunny Land Collection Files/Assets/Props Items and VFX/Sunnyland items/Spritesheets/gem.png" id="1_nlnni"]
+[ext_resource type="AudioStream" uid="uid://2fqg1au65iyh" path="res://alexis_gaming_cam-item-collected-1-367087.mp3" id="2_3niwm"]
+
+[sub_resource type="GDScript" id="GDScript_nlnni"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		
+		Game.XP +=5
+		$AudioStreamPlayer2D.play()
+		var tween = get_tree().create_tween()
+		var tween1 = get_tree().create_tween()
+		tween.tween_property(self,\"position\",position - Vector2(0,50),0.6)
+		tween1.tween_property(self,\"modulate:a\",0,0.6)
+		tween.tween_callback(queue_free)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3niwm"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2jd7"]
+atlas = ExtResource("1_nlnni")
+region = Rect2(0, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ry2kc"]
+atlas = ExtResource("1_nlnni")
+region = Rect2(15, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dau05"]
+atlas = ExtResource("1_nlnni")
+region = Rect2(30, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxfbl"]
+atlas = ExtResource("1_nlnni")
+region = Rect2(45, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb1ct"]
+atlas = ExtResource("1_nlnni")
+region = Rect2(60, 0, 15, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_exdtf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2jd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry2kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dau05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxfbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb1ct")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]
+
+[node name="Gem" type="Area2D" unique_id=69634351]
+script = SubResource("GDScript_nlnni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1148248821]
+shape = SubResource("CircleShape2D_3niwm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1869703911]
+sprite_frames = SubResource("SpriteFrames_exdtf")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.43074518
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=731117477]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1666419897]
+stream = ExtResource("2_3niwm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
