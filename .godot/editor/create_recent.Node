@@ -1,5 +1,7 @@
-Control
 Label
+TextureRect
+CanvasLayer
+Control
 CollisionShape2D
 Node2D
 Timer
@@ -9,6 +11,4 @@ AnimationPlayer
 AnimatedSprite2D
 CharacterBody2D
 Node
-CanvasLayer
 TileMap
-ParallaxLayer

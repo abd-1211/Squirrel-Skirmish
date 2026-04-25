@@ -17,6 +17,9 @@ var rng := RandomNumberGenerator.new()
 var is_dead = false
 var has_hit = false
 
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -70,6 +73,7 @@ func death():
 	self.queue_free()
 
 
+
 func _on_enemycollision_body_entered(body: Node2D) -> void:
 	
 	if body.name == \"Player\" and not has_hit:
@@ -78,6 +82,10 @@ func _on_enemycollision_body_entered(body: Node2D) -> void:
 		body.shake_camera()
 		
 		death()
+		
+		
+
+	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sm1ku"]
