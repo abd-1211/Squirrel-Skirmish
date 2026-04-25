@@ -9,6 +9,10 @@ var shake_strength = 0.0
 
 @onready var esc_image = get_tree().current_scene.get_node("CanvasLayer/EscImage")
 @onready var esc_text = get_tree().current_scene.get_node("CanvasLayer/EscText")
+@onready var on_fire_audio = $OnFireAudio
+@onready var on_fire_image = $UI_Layer/OnFireImage
+@onready var on_fire_text = $UI_Layer/Label
+
 
 var esc_active = false
 
@@ -81,7 +85,28 @@ func _physics_process(delta: float) -> void:
 		is_dead=true
 		get_tree().change_scene_to_file("res://main.tscn")
 	
+func trigger_on_fire():
+	# 1. Reset the streak counter right away so the next 5 kills count!
+	Game.kill_streak = 0
 	
+	# 2. Freeze the game
+	get_tree().paused = true 
+	
+	# 3. Show the image and play the audio
+	on_fire_audio.play()
+	on_fire_image.visible = true
+	on_fire_text.visible = true
+	on_fire_text.text = "YOU ARE ON FIRE!!!"
+	
+	
+	# 4. Wait for 3 seconds. 
+	await get_tree().create_timer(2.0, true).timeout
+	
+	# 5. Hide the image and unfreeze the game
+	on_fire_image.visible = false
+	on_fire_text.visible = false
+	get_tree().paused = false
+
 func trigger_esc_popup():
 	
 	

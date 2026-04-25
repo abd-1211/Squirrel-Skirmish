@@ -1,7 +1,7 @@
-AudioStreamPlayer2D
-Label
 TextureRect
+Label
 CanvasLayer
+AudioStreamPlayer2D
 Control
 CollisionShape2D
 Node2D

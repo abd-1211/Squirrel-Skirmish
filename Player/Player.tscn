@@ -23,6 +23,8 @@
 [ext_resource type="AudioStream" uid="uid://bmwjyn10gdlbi" path="res://jump.mp3" id="21_roy6y"]
 [ext_resource type="AudioStream" uid="uid://dypdph8rwmf4d" path="res://run-[AudioTrimmer.com].mp3" id="22_u5tep"]
 [ext_resource type="AudioStream" uid="uid://chtsvyfi4ooeu" path="res://Sparrow Ouch Meme Effect-[AudioTrimmer.com].mp3" id="23_ps8ct"]
+[ext_resource type="AudioStream" uid="uid://b7lnsr3vxbklv" path="res://fahhhhh.mp3" id="24_7uipr"]
+[ext_resource type="Texture2D" uid="uid://bjiyhso6e4ogw" path="res://WAHEED.jpeg" id="25_yifbt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqaa0"]
 radius = 12.0
@@ -230,3 +232,42 @@ stream = ExtResource("22_u5tep")
 
 [node name="DamageSound" type="AudioStreamPlayer2D" parent="." unique_id=950450751]
 stream = ExtResource("23_ps8ct")
+
+[node name="OnFireAudio" type="AudioStreamPlayer2D" parent="." unique_id=1621582334]
+process_mode = 3
+stream = ExtResource("24_7uipr")
+
+[node name="UI_Layer" type="CanvasLayer" parent="." unique_id=200201028]
+
+[node name="Label" type="Label" parent="UI_Layer" unique_id=1726205111]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -23.0
+offset_right = 74.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "YOU ARE ON FIRE!!!"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="OnFireImage" type="TextureRect" parent="UI_Layer" unique_id=1410161967]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -800.0
+offset_right = 450.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("25_yifbt")

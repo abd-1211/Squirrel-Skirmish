@@ -44,12 +44,17 @@ func _on_playerdetection_2_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		death()
 		Game.XP +=5
+		# --- NEW CODE: Increase streak and check for 10 ---
+		Game.kill_streak += 1
+		if Game.kill_streak == 5:
+			body.trigger_on_fire()
 
 
 func _on_playercollisiion_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not has_hit:
 		has_hit = true
 		body.take_damage(3)
+		Game.kill_streak = 0
 		
 		death()
 			
