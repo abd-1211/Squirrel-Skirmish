@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dvvm3kmsr01yr" path="res://Player/Player.tscn" id="5_15wb7"]
 [ext_resource type="PackedScene" uid="uid://dqjvp76g5s11t" path="res://Dog.tscn" id="6_eoq84"]
 [ext_resource type="PackedScene" uid="uid://ihl6crbw3dnu" path="res://slug.tscn" id="7_7j8ne"]
+[ext_resource type="Texture2D" uid="uid://ccnrjbgih4nf1" path="res://John_Cena_Profile.png" id="8_7dov7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwbse"]
 texture = ExtResource("1_0s5r2")
@@ -410,6 +411,38 @@ position = Vector2(1820, 397)
 
 [node name="Slug6" parent="mob2" unique_id=404744408 instance=ExtResource("7_7j8ne")]
 position = Vector2(2191, 352)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=670161424]
+
+[node name="EscImage" type="TextureRect" parent="CanvasLayer" unique_id=1238160142]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -353.5
+offset_right = 500.0
+offset_bottom = 353.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_7dov7")
+
+[node name="EscText" type="Label" parent="CanvasLayer" unique_id=141838223]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -23.0
+offset_right = 45.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "DO OR DIE!!"
 
 [connection signal="timeout" from="CollectibleSpawner/TimerCarrot" to="CollectibleSpawner" method="_on_timer_carrot_timeout"]
 [connection signal="timeout" from="CollectibleSpawner/TimerGem" to="CollectibleSpawner" method="_on_timer_gem_timeout"]

@@ -86,7 +86,7 @@ func trigger_esc_popup():
 	
 	esc_image.visible = true
 	esc_text.visible = true
-	esc_text.text = "DO OR DIE"
+	esc_text.text = "DO OR DIE!!"
 	
 	shake_camera(10, 0.3)
 	Engine.time_scale = 0.3
