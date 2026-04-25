@@ -1,2 +1,5 @@
 res://level_2.tscn
 res://Player/player.gd
+res://Player/Player.tscn
+res://dog.gd
+res://slug.tscn

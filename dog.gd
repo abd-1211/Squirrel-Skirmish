@@ -49,8 +49,7 @@ func _on_playerdetection_2_body_entered(body: Node2D) -> void:
 func _on_playercollisiion_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not has_hit:
 		has_hit = true
-		Game.playerHP -=3
-		body.shake_camera()
+		body.take_damage(3)
 		
 		death()
 			

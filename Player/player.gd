@@ -12,6 +12,10 @@ var shake_strength = 0.0
 
 var esc_active = false
 
+func take_damage(amount):
+	Game.playerHP -= amount
+	shake_camera()
+	$DamageSound.play()
 
 func shake_camera(intensity := 6.0, duration := 0.15):
 	shake_strength = intensity

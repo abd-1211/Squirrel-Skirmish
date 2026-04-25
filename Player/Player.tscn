@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cated42i56r0m" path="res://Sunny Land Collection Files/Assets/Characters/Players/Squirrel/run/Sprites/player-run-6.png" id="20_vtj8b"]
 [ext_resource type="AudioStream" uid="uid://bmwjyn10gdlbi" path="res://jump.mp3" id="21_roy6y"]
 [ext_resource type="AudioStream" uid="uid://dypdph8rwmf4d" path="res://run-[AudioTrimmer.com].mp3" id="22_u5tep"]
+[ext_resource type="AudioStream" uid="uid://chtsvyfi4ooeu" path="res://Sparrow Ouch Meme Effect-[AudioTrimmer.com].mp3" id="23_ps8ct"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqaa0"]
 radius = 12.0
@@ -226,3 +227,6 @@ stream = ExtResource("21_roy6y")
 
 [node name="Running" type="AudioStreamPlayer2D" parent="." unique_id=593600913]
 stream = ExtResource("22_u5tep")
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="." unique_id=950450751]
+stream = ExtResource("23_ps8ct")
