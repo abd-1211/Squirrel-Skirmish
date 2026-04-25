@@ -120,7 +120,7 @@ func trigger_esc_popup():
 	shake_camera(10, 0.3)
 	Engine.time_scale = 0.3
 	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	
 	esc_image.visible = false
 	esc_text.visible = false
