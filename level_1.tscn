@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwa5ohwcdrcdo" path="res://Sunny Land Collection Files/Assets/Environments/Forest/Forest Pack/PNG/environment/Background Layers/middleground.png" id="4_5rr72"]
 [ext_resource type="PackedScene" uid="uid://dvvm3kmsr01yr" path="res://Player/Player.tscn" id="5_gyffv"]
 [ext_resource type="PackedScene" uid="uid://dqjvp76g5s11t" path="res://Dog.tscn" id="6_1pe0h"]
+[ext_resource type="Texture2D" uid="uid://ccnrjbgih4nf1" path="res://John_Cena_Profile.png" id="7_j7kpp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwbse"]
 texture = ExtResource("1_5hph3")
@@ -357,6 +358,38 @@ one_shot = true
 
 [node name="gotolvl2" type="Node" parent="." unique_id=635165171]
 script = SubResource("GDScript_5hph3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=656869725]
+
+[node name="EscImage" type="TextureRect" parent="CanvasLayer" unique_id=1037627054]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -353.5
+offset_right = 500.0
+offset_bottom = 353.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_j7kpp")
+
+[node name="EscText" type="Label" parent="CanvasLayer" unique_id=1682008098]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.5
+offset_top = -23.0
+offset_right = 60.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "DO OR DIE!!!!!!!!!"
 
 [connection signal="timeout" from="CollectibleSpawner/TimerCarrot" to="CollectibleSpawner" method="_on_timer_carrot_timeout"]
 [connection signal="timeout" from="CollectibleSpawner/TimerGem" to="CollectibleSpawner" method="_on_timer_gem_timeout"]
