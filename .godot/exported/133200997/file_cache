@@ -1,10 +1,10 @@
-res://Player/Player.tscn::9f8175a1ae34aadcfabbf718bd5c9da0::1777164547::res://.godot/exported/133200997/export-48b487cb3fbab0e0d627d8f8de2ba1d9-Player.scn
+res://Player/Player.tscn::5fa9671befe18cf9df0157c67e49fb07::1777207460::res://.godot/exported/133200997/export-48b487cb3fbab0e0d627d8f8de2ba1d9-Player.scn
 res://BG.tscn::0cc62bdb201958ba515733281a94bd67::1777154838::res://.godot/exported/133200997/export-27f0e2051c98db369292e128e300c528-BG.scn
 res://Carrot.tscn::b7d27ad7bbbf02d8e14c3bf915255229::1777154838::res://.godot/exported/133200997/export-3c5e65432b9b27085dc5979d598db55e-Carrot.scn
 res://Dog.tscn::f4d0852a7635b02ef6ebbcd08af273a7::1777154838::res://.godot/exported/133200997/export-f3a3d4ab5d9d338c953996354f9d784e-Dog.scn
 res://Gem.tscn::4a4e5ce73218dbf3cca887a95f8225aa::1777154838::res://.godot/exported/133200997/export-0582a07c948980b38cd557f0b8a4ffee-Gem.scn
-res://level_1.tscn::cda6a27136628af5259338cb0e2e6f67::1777154840::res://.godot/exported/133200997/export-63309efd344a9c730c2375c6c1edaf63-level_1.scn
-res://level_2.tscn::deaa14490257baaf2a37c7e87efc8c85::1777155331::res://.godot/exported/133200997/export-f232880c53f78a005d817f1d8d602f60-level_2.scn
+res://level_1.tscn::ca80e08faa3f1ef0d6f85815c055beec::1777209850::res://.godot/exported/133200997/export-63309efd344a9c730c2375c6c1edaf63-level_1.scn
+res://level_2.tscn::4ca8490f65e0fa3f2e906b5720b4ccd6::1777208731::res://.godot/exported/133200997/export-f232880c53f78a005d817f1d8d602f60-level_2.scn
 res://main.tscn::189b2037adf683ddd97afc8985a83f19::1777154838::res://.godot/exported/133200997/export-3070c538c03ee49b7677ff960a3f5195-main.scn
 res://MainMenuRoot.tscn::f851cad5fd0a1db3fdbcb93d029a0dff::1777154838::res://.godot/exported/133200997/export-d88f9b707c33ae8d05de4898ba0863e3-MainMenuRoot.scn
 res://slug.tscn::6846576d8b761b46c448cf735fff8bd0::1777159391::res://.godot/exported/133200997/export-30bba45bb68a2eb2674172bbf556ac1e-slug.scn
