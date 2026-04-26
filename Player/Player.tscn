@@ -25,6 +25,8 @@
 [ext_resource type="AudioStream" uid="uid://chtsvyfi4ooeu" path="res://Sparrow Ouch Meme Effect-[AudioTrimmer.com].mp3" id="23_ps8ct"]
 [ext_resource type="AudioStream" uid="uid://b7lnsr3vxbklv" path="res://fahhhhh.mp3" id="24_7uipr"]
 [ext_resource type="Texture2D" uid="uid://bjiyhso6e4ogw" path="res://WAHEED.jpeg" id="25_yifbt"]
+[ext_resource type="AudioStream" uid="uid://cr43faydwshk3" path="res://baby crying ringtone.mp3" id="26_hqjia"]
+[ext_resource type="Texture2D" uid="uid://cnck54ymlirbu" path="res://5u4yyw.png" id="27_x70vp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqaa0"]
 radius = 12.0
@@ -238,6 +240,7 @@ process_mode = 3
 stream = ExtResource("24_7uipr")
 
 [node name="UI_Layer" type="CanvasLayer" parent="." unique_id=200201028]
+layer = 11
 
 [node name="Label" type="Label" parent="UI_Layer" unique_id=1726205111]
 visible = false
@@ -270,3 +273,14 @@ offset_bottom = 424.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("25_yifbt")
+
+[node name="CrySound" type="AudioStreamPlayer2D" parent="." unique_id=500339323]
+stream = ExtResource("26_hqjia")
+
+[node name="CryOverlay" type="CanvasLayer" parent="." unique_id=1934087967]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="CryOverlay" unique_id=867872858]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("27_x70vp")
