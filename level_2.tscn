@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dqjvp76g5s11t" path="res://Dog.tscn" id="6_eoq84"]
 [ext_resource type="PackedScene" uid="uid://ihl6crbw3dnu" path="res://slug.tscn" id="7_7j8ne"]
 [ext_resource type="Texture2D" uid="uid://ccnrjbgih4nf1" path="res://John_Cena_Profile.png" id="8_7dov7"]
+[ext_resource type="AudioStream" uid="uid://cfna6dtq45mv1" path="res://John Cena Meme-[AudioTrimmer.com].mp3" id="9_ehv2h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwbse"]
 texture = ExtResource("1_0s5r2")
@@ -441,8 +442,17 @@ offset_top = -23.0
 offset_right = 45.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 80
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.7058824, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 96
 text = "DO OR DIE!!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=174108406]
+stream = ExtResource("9_ehv2h")
 
 [connection signal="timeout" from="CollectibleSpawner/TimerCarrot" to="CollectibleSpawner" method="_on_timer_carrot_timeout"]
 [connection signal="timeout" from="CollectibleSpawner/TimerGem" to="CollectibleSpawner" method="_on_timer_gem_timeout"]

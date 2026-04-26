@@ -242,6 +242,21 @@ stream = ExtResource("24_7uipr")
 [node name="UI_Layer" type="CanvasLayer" parent="." unique_id=200201028]
 layer = 11
 
+[node name="ColorRect" type="ColorRect" parent="UI_Layer" unique_id=410560996]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -468.0
+offset_top = -512.0
+offset_right = 472.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.5529412, 0, 1)
+
 [node name="Label" type="Label" parent="UI_Layer" unique_id=1726205111]
 visible = false
 anchors_preset = 7
@@ -249,18 +264,26 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -74.0
-offset_top = -23.0
-offset_right = 74.0
+offset_left = -367.5
+offset_top = -140.0
+offset_right = 367.5
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 80
+theme_override_colors/font_color = Color(1, 0.3019608, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.58431375, 0, 0, 0.7882353)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 72
 text = "YOU ARE ON FIRE!!!"
 horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="OnFireImage" type="TextureRect" parent="UI_Layer" unique_id=1410161967]
 visible = false
+modulate = Color(1, 0.8627451, 0.7058824, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

@@ -11,6 +11,9 @@ var shake_strength = 0.0
 @onready var on_fire_audio = $OnFireAudio
 @onready var on_fire_image = $UI_Layer/OnFireImage
 @onready var on_fire_text = $UI_Layer/Label
+@onready var on_fire_border = $UI_Layer/ColorRect
+@onready var esc_audio = get_tree().current_scene.get_node("CanvasLayer/AudioStreamPlayer")
+
 var esc_active = false
 
 func take_damage(amount):
@@ -104,10 +107,12 @@ func trigger_on_fire():
 	Game.kill_streak = 0
 	get_tree().paused = true
 	on_fire_audio.play()
+	on_fire_border.visible = true
 	on_fire_image.visible = true
 	on_fire_text.visible = true
 	on_fire_text.text = "YOU ARE ON FIRE!!!"
-	await get_tree().create_timer(2.0, true).timeout
+	await get_tree().create_timer(0.5, true).timeout
+	on_fire_border.visible = false
 	on_fire_image.visible = false
 	on_fire_text.visible = false
 	
@@ -118,10 +123,26 @@ func trigger_esc_popup():
 	esc_image.visible = true
 	esc_text.visible = true
 	esc_text.text = "DO OR DIE!!"
-	shake_camera(10, 0.3)
+	esc_audio.play()
+	shake_camera(20, 0.5)
 	Engine.time_scale = 0.3
-	await get_tree().create_timer(0.5).timeout
+	esc_image.pivot_offset = esc_image.size / 2
+
+	var original_pos = esc_image.position
+	for i in range(6):
+		var t = get_tree().create_tween().set_parallel(true)
+		t.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		t.tween_property(esc_image, "position:x", original_pos.x + randf_range(-20, 20), 0.08).set_trans(Tween.TRANS_SINE)
+		t.tween_property(esc_image, "position:y", original_pos.y + randf_range(-15, 15), 0.08).set_trans(Tween.TRANS_SINE)
+		t.tween_property(esc_image, "scale", Vector2(randf_range(0.92, 1.12), randf_range(0.92, 1.12)), 0.08).set_trans(Tween.TRANS_SINE)
+		await t.finished
+
+	esc_image.scale = Vector2(1.0, 1.0)
+	esc_image.position = original_pos
+	
 	esc_image.visible = false
 	esc_text.visible = false
 	Engine.time_scale = 1.0
 	esc_active = false
+	await get_tree().create_timer(2.0, true).timeout
+	esc_audio.stop() 
